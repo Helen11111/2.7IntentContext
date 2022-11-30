@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">IntentContext</string>
+    <string name="txt_btn_enter">перейти далее</string>
+    <string name="txt_open">открыть файлы</string>
+    <string name="txt_send">передать информацию</string>
+    <string name="txt_result">результат</string>
+</resources>
