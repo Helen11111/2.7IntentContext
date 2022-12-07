@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -48,9 +50,16 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
 
             case R.id.open_file:
-                Intent intentOpenFile = new Intent(Intent.ACTION_OPEN_DOCUMENT);
-                intentOpenFile.setType("*/*");
-                startActivityForResult(intentOpenFile, 123);
+                //Intent intentOpenFile = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                //intentOpenFile.setType("*/*");
+                //startActivityForResult(intentOpenFile, 123);
+                Uri address = Uri.parse("http://https://myitschool.ru");
+                Intent intent2 = new Intent(Intent.ACTION_VIEW, address);
+                if (intent2.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent2);
+                } else {
+                    Log.d("Intent", "Не получается обработать намерение!");
+                }
                 break;
             case R.id.send_file:
                 String text = edText.getText().toString();
