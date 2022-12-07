@@ -46,6 +46,35 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 startActivity(intent);
                 finish();
                 break;
+
+            case R.id.open_file:
+                Intent intentOpenFile = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+                intentOpenFile.setType("*/*");
+                startActivityForResult(intentOpenFile, 123);
+                break;
+            case R.id.send_file:
+                String text = edText.getText().toString();
+                Intent intentWithInfo = new Intent(this, SecondActivity.class);
+                intentWithInfo.putExtra("my text", text);
+                startActivity(intentWithInfo);
+            case R.id.result:
+                Intent intentResult = new Intent(this, SecondActivity.class);
+                startActivityForResult(intentResult, 321);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(RESULT_OK == resultCode) {
+            if(requestCode == 123) {
+                Toast.makeText(this, data.getStringExtra("text123"), Toast.LENGTH_SHORT).show();
+            }
+            if(requestCode == 321) {
+                Toast.makeText(this, data.getStringExtra("text321"), Toast.LENGTH_SHORT).show();
+            }
+
+        }
+
     }
 }
